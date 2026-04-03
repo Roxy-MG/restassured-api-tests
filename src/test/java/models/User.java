@@ -1,0 +1,24 @@
+package models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class User {
+    private Integer id;
+    @NonNull
+    private String name;
+    @NonNull
+    private String job;
+    private String email;
+    @JsonProperty("first_name")
+    private String firstName;
+    @JsonProperty("last_name")
+    private String lastName;
+}
