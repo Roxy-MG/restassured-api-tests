@@ -8,18 +8,23 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class TestConfig {
+
+    public static final String BASE_URL = "https://reqres.in/api";
+    public static final Map<String, String> X_API_KEY = Map.of("x-api-key", "reqres_3a3a43e2ced2455d9595965443c535cc");
 
     private static String token;
 
     // 请求配置
     public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri("https://reqres.in/api")
+                .setBaseUri(BASE_URL)
                 .setContentType(ContentType.JSON)
-                .addHeader("x-api-key", "reqres_3a3a43e2ced2455d9595965443c535cc")
+                .addHeaders(X_API_KEY)
                 .log(LogDetail.BODY)
                 .addFilter(new AllureRestAssured())
                 .build();
