@@ -22,10 +22,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Run tests
-        run: mvn clean test allure:report
+        run: mvn clean test
 
       - name: Upload report
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
-          path: target/site/allure-maven-plugin/
+          name: allure-results
+          path: target/allure-results
