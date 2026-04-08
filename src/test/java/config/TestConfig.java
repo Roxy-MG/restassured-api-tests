@@ -42,9 +42,10 @@ public class TestConfig {
     }
 
     // 获取token
-    public void getToken() {
+    public String getToken() {
+        // 判断token是否为空
         if (token != null) {
-            return;
+            return token;
         }
         token = given()
                 .spec(getRequestSpec())
@@ -52,5 +53,7 @@ public class TestConfig {
                 .when()
                 .post("/login")
                 .path("token");
+        return token;
     }
+
 }
