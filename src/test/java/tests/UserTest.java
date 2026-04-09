@@ -11,6 +11,7 @@ import static config.TestConfig.getResponseSpec;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static services.UserService.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 @Epic("用户系统")
 @Feature("用户管理功能")
@@ -25,9 +26,10 @@ public class UserTest {
                 .spec(getResponseSpec(200))
                 .body("page", equalTo(1))
                 .body("data.size()", equalTo(6))
-                .body("data.id", notNullValue());
+                .body("data.id", notNullValue())
+                // JSONSchema校验
+                .body(matchesJsonSchemaInClasspath("schema/users-list-schema.json"));
     }
-
 
     @ParameterizedTest
     @CsvSource({"1,George", "2,Janet", "3,Emma"})

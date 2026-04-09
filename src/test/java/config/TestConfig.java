@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -18,6 +19,8 @@ public class TestConfig {
     public static final Map<String, String> X_API_KEY = Map.of("x-api-key", "reqres_3a3a43e2ced2455d9595965443c535cc");
 
     private static String token;
+    private static LocalDateTime tokenExpireTime;
+    public static final int TOKEN_VALID_TIME = 55;
 
     // 请求配置
     public static RequestSpecification getRequestSpec() {
@@ -43,8 +46,8 @@ public class TestConfig {
 
     // 获取token
     public String getToken() {
-        // 判断token是否为空
-        if (token != null) {
+        // 判断token是否为空/过期
+        if (token != null && tokenExpireTime != null && tokenExpireTime.isAfter(LocalDateTime.now())) {
             return token;
         }
         token = given()
@@ -53,6 +56,7 @@ public class TestConfig {
                 .when()
                 .post("/login")
                 .path("token");
+        tokenExpireTime = LocalDateTime.now().plusMinutes(TOKEN_VALID_TIME);
         return token;
     }
 
