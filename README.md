@@ -24,6 +24,9 @@ src/test/java/
 ├── services/ # 业务层（API封装）  
 └── tests/ # 测试用例层  
 
+src/test/resources/  
+└── schema/ # JSON Schema 文件  
+
 ## 快速开始
 
 ### 环境要求
