@@ -2,8 +2,11 @@ package tests;
 
 import io.qameta.allure.*;
 import models.User;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 
@@ -41,16 +44,17 @@ public class UserTest {
         assertEquals(firstName, user.getFirstName());
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvFileSource(resources = "/data/users.csv", numLinesToSkip = 1)
     @Story("创建用户")
     @Severity(SeverityLevel.CRITICAL)
-    public void testCreateUser() {
-        createUserResponse(new User("张三", "测试人员"))
+    public void testCreateUser(String name, String job) {
+        createUserResponse(new User(name, job))
                 .then()
                 .spec(getResponseSpec(201))
                 .body("id", notNullValue())
-                .body("name", equalTo("张三"))
-                .body("job", equalTo("测试人员"));
+                .body("name", equalTo(name))
+                .body("job", equalTo(job));
     }
 
     @Test
