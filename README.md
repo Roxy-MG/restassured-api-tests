@@ -24,7 +24,7 @@ src/test/resources/
 ### 🔀 CI/CD 自动化
 测试已集成 GitHub Actions  
 
-![CI Status](https://github.com/Roxy-MG/restassured-api-tests/actions/workflows/test.yml/badge.svg)
+[![API_Tests](https://github.com/Roxy-MG/restassured-api-tests/actions/workflows/test.yml/badge.svg)](https://github.com/Roxy-MG/restassured-api-tests/actions/workflows/test.yml)
 
 ### 📊 数据驱动测试
 支持 `@CsvSource` 和 `@CsvFileSource` 两种数据驱动方式。
@@ -32,7 +32,7 @@ src/test/resources/
 ### 📋 Allure 测试报告
 集成 Allure Report，测试结果可视化展示。
 
-### 🔒 支持并发
+### ⚡ 支持并发
 junit-platform.properties 配置全局并发
 
 ### 🛡️ 响应校验
