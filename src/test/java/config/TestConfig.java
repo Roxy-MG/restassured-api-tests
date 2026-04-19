@@ -62,14 +62,17 @@ public class TestConfig {
         if (token != null && tokenExpireTime != null && tokenExpireTime.isAfter(LocalDateTime.now())) {
             return token;
         }
-        token = given()
-                .spec(getRequestSpec())
-                .body("{\"email\":\"eve.holt@reqres.in\",\"password\":\"cityslicka\"}")
-                .when()
-                .post("/login")
-                .path("token");
-        tokenExpireTime = LocalDateTime.now().plusMinutes(TOKEN_VALID_TIME);
-        return token;
+        // 并发锁
+        synchronized (TestConfig.class) {
+            token = given()
+                    .spec(getRequestSpec())
+                    .body("{\"email\":\"eve.holt@reqres.in\",\"password\":\"cityslicka\"}")
+                    .when()
+                    .post("/login")
+                    .path("token");
+            tokenExpireTime = LocalDateTime.now().plusMinutes(TOKEN_VALID_TIME);
+            return token;
+        }
     }
 
 }
