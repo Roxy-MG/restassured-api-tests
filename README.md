@@ -1,5 +1,5 @@
 ![Java](https://img.shields.io/badge/Java-17-blue)
-![Junit5](https://img.shields.io/badge/RestAssured-5.10.2-yellow)
+![Junit5](https://img.shields.io/badge/JUnit5-5.10.2-yellow)
 ![RestAssured](https://img.shields.io/badge/RestAssured-5.3.0-green)
 ![Allure](https://img.shields.io/badge/Allure-2.25.0-purple)
 
