@@ -1,23 +1,14 @@
 ![Java](https://img.shields.io/badge/Java-17-blue)
+![Junit5](https://img.shields.io/badge/RestAssured-5.10.2-yellow)
 ![RestAssured](https://img.shields.io/badge/RestAssured-5.3.0-green)
 ![Allure](https://img.shields.io/badge/Allure-2.25.0-purple)
-![CI](https://github.com/Roxy-MG/restassured-api-tests/actions/workflows/test.yml/badge.svg)
-# RestAssured + JUnit5 接口自动化测试框架
 
-## 项目简介
+# RestAssured API 自动化测试框架
 
-基于 RestAssured 和 JUnit5 的接口自动化测试项目，用于 ReqRes 示例接口的测试。
+## 🏗️ 技术栈
+Java 17 | RestAssured | JUnit 5 | Allure Report | Lombok | Maven
 
-## 技术栈
-
-- Java 17
-- RestAssured 5.3.0
-- JUnit 5
-- Allure
-- Maven
-- Lombok
-
-## 项目结构
+## 📁 项目结构
 src/test/java/  
 ├── config/ # 配置层（请求/响应规格）  
 ├── models/ # 数据模型层  
@@ -25,18 +16,32 @@ src/test/java/
 └── tests/ # 测试用例层  
 
 src/test/resources/  
+├── data/ # 测试数据  
 └── schema/ # JSON Schema 文件  
 
-## 快速开始
+## ✨ 框架亮点
 
-### 环境要求
-- JDK 17+
-- Maven 3.6+
+### 🔀 CI/CD 自动化
+测试已集成 GitHub Actions  
 
-### 运行测试
+![CI Status](https://github.com/Roxy-MG/restassured-api-tests/actions/workflows/test.yml/badge.svg)
+
+### 📊 数据驱动测试
+支持 `@CsvSource` 和 `@CsvFileSource` 两种数据驱动方式。
+
+### 📋 Allure 测试报告
+集成 Allure Report，测试结果可视化展示。
+
+### 🔒 支持并发
+junit-platform.properties 配置全局并发
+
+### 🛡️ 响应校验
+支持 JSON Schema 结构校验 + 字段精确断言。
+
+## ▶️ 如何运行
 ```bash
 mvn clean test allure:serve
 ```
 
-### 报告位置
-- target/allure-results/
+## 📂 报告位置
+target/allure-results/
